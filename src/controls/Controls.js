@@ -3,20 +3,20 @@ import React, { Component } from 'react';
 class Controls extends Component {
 
   constructor(props) {
-  	super(props);
-  	this.state = {
-  		running: false,
-  	};
-  	this.onStartClicked = this.onStartClicked.bind(this);
+    super(props);
+    this.state = {
+      running: false,
+    };
+    this.onStartClicked = this.onStartClicked.bind(this);
   }
 
   onStartClicked(event) {
-  	if (this.state.running) {
-  		this.props.onStop();
-  	} else {
-  		this.props.onStart();
-  	}
-  	this.setState({running: !this.state.running});
+    if (this.state.running) {
+      this.props.onStop();
+    } else {
+      this.props.onStart();
+    }
+    this.setState({running: !this.state.running});
   }
 
   render() {
