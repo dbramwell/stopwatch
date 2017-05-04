@@ -14,3 +14,7 @@ To run tests one time only:
 ```
 CI=true npm test
 ```
+
+Travis job located [here](https://travis-ci.org/dbramwell/stopwatch)
+
+Deployed via heroku to [here](https://timerandstopwatch.herokuapp.com)
