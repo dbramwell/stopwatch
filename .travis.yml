@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-  - "7.7.4"
+- 7.7.4
 before_script:
-  - npm install
+- npm install
+deploy:
+  provider: heroku
+  api_key:
+    secure: l8N7NqKJMm+dLIinvnGcTWmyQe3puX44I/IqdBplXOy3Gcpm+ZZsW8d8+jW7844SyOWqPM5j2Mz1ka+cUXarcOBLiYXN6FSRQ67MMsZEkXJlFwyiraGAg7sRRS23UPj4U/CQTyK9KzfXGH5iNOqUnKPovbPXPdsp+DPrS0xsQ6+MUFUqgmnUEdumSMRQNd2AP72YuzakNbfhfmF4DdEHYPmx/ROKwQcKM9f55zfz+jGSAEPbdOqs62sZ4ACsdDInjDrpcLeja5/57OV7XJXiBwIaO5euNlu1epqwVdXz811fD0/pM4NKtCC1eTNb/VAzXDimGFJ2wWVR05RMuObR7UR+uTr1tNEF1HRdQ3Q0HYtVJrQ13IzvllcKgs8glwwYlOIl0BK2eRLkRw3UuGO/mFrfUdXmLqU41V39P+lVB+A9Fxmk76VFxOw3A8unZBSHtZqMkZ1uXP6TTcympWEp2cVY+JLfcsXVQjWVZGapNadLoTgOJ4Hv8GCVbpkYsL3K+TKqU6RvsBLI7065k7ty8UtnzAhw1eHLDCBRvFbISbM9+S8rUOpdYs7wMMij+WkuiVzeVOCzUbC4QAirMCjTynUa3nMZjaIl82lxfrbONlYTmXJSnlv8SC9h2NWx2M5pe04EP1HOXUPcXK/VOT1ObYSYmOSKmfEciGxlauYckXo=
+  app: timerandstopwatch
+  on:
+    repo: dbramwell/stopwatch
