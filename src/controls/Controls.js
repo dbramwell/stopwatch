@@ -4,8 +4,8 @@ class Controls extends Component {
   render() {
     return (
       <div className="controls">
-        <button/>
-        <button/>
+        <button>START</button>
+        <button>RESET</button>
       </div>
     );
   }

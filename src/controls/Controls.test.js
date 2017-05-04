@@ -13,3 +13,10 @@ it('contains two buttons', () => {
   const buttons = controls.find('button');
   expect(buttons.length).toEqual(2);
 });
+
+it('buttons are named "START" and "RESET" on initial rendering', () => {
+  const controls = shallow(<Controls />);
+  const buttons = controls.find('button');
+  expect(buttons.at(0).text()).toEqual("START");
+  expect(buttons.at(1).text()).toEqual("RESET");
+});
