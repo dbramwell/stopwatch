@@ -20,3 +20,31 @@ it('buttons are named "START" and "RESET" on initial rendering', () => {
   expect(buttons.at(0).text()).toEqual("START");
   expect(buttons.at(1).text()).toEqual("RESET");
 });
+
+it('initial state of the controls shows running as false', () => {
+  const controls = shallow(<Controls />);
+  expect(controls.state().running).toBeFalsy();
+});
+
+it('state.running is true after start button click', () => {
+  const controls = mount(<Controls />);
+  const buttons = controls.find('button');
+  buttons.at(0).simulate("click");
+  expect(controls.state().running).toBeTruthy();
+});
+
+it('"START" button changes to "STOP" after START button has been clicked', () => {
+  const controls = mount(<Controls />);
+  const buttons = controls.find('button');
+  buttons.at(0).simulate("click");
+  expect(buttons.at(0).text()).toEqual("STOP");
+});
+
+it('"START" button changes back to "START" after START button has been clicked twice', () => {
+  const controls = mount(<Controls />);
+  const buttons = controls.find('button');
+  buttons.at(0).simulate("click");
+  expect(buttons.at(0).text()).toEqual("STOP");
+  buttons.at(0).simulate("click");
+  expect(buttons.at(0).text()).toEqual("START");
+});
