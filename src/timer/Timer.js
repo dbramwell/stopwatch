@@ -21,6 +21,9 @@ class Timer extends Component {
   onStart() {
     const self = this;
     const id = setInterval(function() {
+      if (self.state.mins === 0 && self.state.secs === 1) {
+        self.onStop();
+      }
       self.setState(self.state.secs > 0 ? {secs: self.state.secs - 1} : {mins: self.state.mins - 1, secs: 59}); 
     }, 1000);
     this.setState({intervalId: id});

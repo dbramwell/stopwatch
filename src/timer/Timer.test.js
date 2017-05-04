@@ -81,3 +81,17 @@ it('when "RESET" is clicked in controller, state.mins and state.secs return to 5
   expect(timer.state().secs).toBe(0);
   expect(timer.find('p').text()).toEqual("5m 00s");
 });
+
+it('when timer reaches zero the countdown stops', () => {
+  const timer = mount(<Timer />);
+  const startButton = timer.find('button').at(0);
+  timer.setState({mins:0, secs:1});
+  startButton.simulate("click");
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(0);
+  expect(timer.state().secs).toBe(0);
+
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(0);
+  expect(timer.state().secs).toBe(0);
+});
