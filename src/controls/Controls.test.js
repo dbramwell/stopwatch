@@ -41,7 +41,7 @@ it('"START" button changes to "STOP" after START button has been clicked', () =>
 });
 
 it('"START" button changes back to "START" after START button has been clicked twice', () => {
-  const controls = mount(<Controls onStart={function(){}}/>);
+  const controls = mount(<Controls onStart={function(){}} onStop={function(){}}/>);
   const buttons = controls.find('button');
   buttons.at(0).simulate("click");
   expect(buttons.at(0).text()).toEqual("STOP");
@@ -55,5 +55,28 @@ it('props.onStart() is called when start is clicked', () => {
   const startButton = controls.find('button').at(0);
   startButton.simulate("click");
   expect(startButton.text()).toEqual("STOP");
+  expect(mockFunction.mock.calls.length).toBe(1);
+});
+
+it('props.onStop() is called when stop is clicked', () => {
+  const mockFunction = jest.fn();
+  const controls = mount(<Controls onStop={mockFunction} onStart={function(){}}/>);
+  const startButton = controls.find('button').at(0);
+  startButton.simulate("click");
+  expect(startButton.text()).toEqual("STOP");
+  startButton.simulate("click");
+  expect(mockFunction.mock.calls.length).toBe(1);
+});
+
+it('props.onReset() is called when reset is clicked', () => {
+  const mockFunction = jest.fn();
+  const controls = mount(<Controls onReset={mockFunction} onStop={function(){}} onStart={function(){}}/>);
+  const startButton = controls.find('button').at(0);
+  startButton.simulate("click");
+  expect(startButton.text()).toEqual("STOP");
+  startButton.simulate("click");
+  const resetButton = controls.find('button').at(1);
+  expect(resetButton.text()).toEqual("RESET");
+  resetButton.simulate("click");
   expect(mockFunction.mock.calls.length).toBe(1);
 });

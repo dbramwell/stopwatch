@@ -11,7 +11,11 @@ class Controls extends Component {
   }
 
   onStartClicked(event) {
-  	this.props.onStart();
+  	if (this.state.running) {
+  		this.props.onStop();
+  	} else {
+  		this.props.onStart();
+  	}
   	this.setState({running: !this.state.running});
   }
 
@@ -19,7 +23,7 @@ class Controls extends Component {
     return (
       <div className="controls">
         <button onClick={this.onStartClicked}>{this.state.running ? "STOP" : "START"}</button>
-        <button>RESET</button>
+        <button onClick={this.props.onReset}>RESET</button>
       </div>
     );
   }

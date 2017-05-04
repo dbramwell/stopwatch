@@ -46,3 +46,38 @@ it('when "START" is clicked in controller, state.mins and state.secs decreases',
   expect(timer.state().secs).toBe(59);
   expect(timer.find('p').text()).toEqual("4m 59s");
 });
+
+it('when "STOP" is clicked in controller, state.mins and state.secs stops decreasing', () => {
+  const timer = mount(<Timer />);
+  const startButton = timer.find('button').at(0);
+  startButton.simulate("click");
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(4);
+  expect(timer.state().secs).toBe(59);
+  expect(timer.find('p').text()).toEqual("4m 59s");
+  startButton.simulate("click");
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(4);
+  expect(timer.state().secs).toBe(59);
+  expect(timer.find('p').text()).toEqual("4m 59s");
+});
+
+it('when "RESET" is clicked in controller, state.mins and state.secs return to 5 and 0', () => {
+  const timer = mount(<Timer />);
+  const startButton = timer.find('button').at(0);
+  startButton.simulate("click");
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(4);
+  expect(timer.state().secs).toBe(59);
+  expect(timer.find('p').text()).toEqual("4m 59s");
+  startButton.simulate("click");
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(4);
+  expect(timer.state().secs).toBe(59);
+  expect(timer.find('p').text()).toEqual("4m 59s");
+  const resetButton = timer.find('button').at(1);
+  resetButton.simulate("click");
+  expect(timer.state().mins).toBe(5);
+  expect(timer.state().secs).toBe(0);
+  expect(timer.find('p').text()).toEqual("5m 00s");
+});
