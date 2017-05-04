@@ -95,3 +95,18 @@ it('when timer reaches zero the countdown stops', () => {
   expect(timer.state().mins).toBe(0);
   expect(timer.state().secs).toBe(0);
 });
+
+it('when timer reaches zero, if stop then start are pressed, timer should remain on 0', () => {
+  const timer = mount(<Timer />);
+  const startButton = timer.find('button').at(0);
+  timer.setState({mins:0, secs:1});
+  startButton.simulate("click");
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(0);
+  expect(timer.state().secs).toBe(0);
+  startButton.simulate("click");
+  startButton.simulate("click");
+  jest.runTimersToTime(1000);
+  expect(timer.state().mins).toBe(0);
+  expect(timer.state().secs).toBe(0);
+});
